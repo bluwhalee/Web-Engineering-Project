@@ -12,14 +12,6 @@
 <h1> Cart Page <h1>
 <%
         session = request.getSession();
-        if (session.getAttribute("login") == null) {
-            session.setAttribute("url","http://localhost:8080/project/cart.jsp");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-
-        }
-        else{
-            session.removeAttribute("url");
-        }
         List<String[]> orders = new ArrayList<String[]>();
         orders = (List<String[]>)session.getAttribute("cartitems");
         int val = 0;
@@ -42,7 +34,7 @@
          <h4>   Model: <%= orders.get(val)[1] %><br> <h4>
 <%
             if (orders.get(val)[0].equals("Complete Repair")) {
-                total = total + 500;
+                total = total + Integer.parseInt(orders.get(val)[7]);
 %>
                 <h4>   Cpu: <%= orders.get(val)[2] %><br> <h4>
                 <h4>   Gpu: <%= orders.get(val)[3] %><br> <h4>
@@ -53,7 +45,7 @@
 
             }
             if (orders.get(val)[0].equals("Cosmic Repair")) {
-                total = total + 300;
+                total = total + Integer.parseInt(orders.get(val)[7]);
 %>
                 <h4>   Body: <%= orders.get(val)[2] %><br> <h4>
                 <h4>   Paint: <%= orders.get(val)[3] %><br> <h4>
@@ -66,6 +58,7 @@
         }
 %>
 <h2>Order Total :- $<%= total %><h2>
+<a href="http://localhost:8080/project/index.html"><button>Buy More</button></a><br><br>
 <form action = "checkout" method="post">
     <input type="submit" value="Checkout">
 </form>
