@@ -61,15 +61,16 @@ public class userDAO {
         return 0;
 
     }
-    public int userSignup(String username, String pass,String name){
+    public int userSignup(String username, String pass,String name,String email){
 
         try{
-            String query1 = "INSERT into profile (username, password, usertype, name) VALUES (?,?,?,?)";
+            String query1 = "INSERT into profile(username, password, usertype, name, email) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query1);
             ps.setString(1,username);
             ps.setString(2,pass);
             ps.setString(3,"customer");
             ps.setString(4,name);
+            ps.setString(5,email);
             ps.executeUpdate();
             return 1;
             

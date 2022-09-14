@@ -4,7 +4,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-public class allparts extends HttpServlet {
+public class allusers extends HttpServlet {
     adminDAO ad = adminDAO.getAD();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -19,23 +19,19 @@ public class allparts extends HttpServlet {
             out.println("<h2>You can access from Admin Dashboard Only<h2>");
             return;
         }
-        ResultSet rs1 = ad.allparts();
+        ResultSet rs1 = ad.allusers();
         if(rs1==null){out.println(rs1);}
         
-        out.println("<table class="+"\"table table-striped\""+"><tr><th>CPU</th><th>GPU</th><th>HDD</th><th>RAM</th><th>Body</th><th>Display</th></tr>");
+        out.println("<table class="+"\"table table-striped\""+"><tr><th>Name</th><th>Email</th><th>Username</th></tr>");
         
         
         try {
             while (rs1.next()) {
                 
-                int cpu = rs1.getInt("cpu");
-                int gpu = rs1.getInt("gpu");
-                int hdd = rs1.getInt("hdd");
-                int ram = rs1.getInt("ram");
-                int body = rs1.getInt("body");
-                int display = rs1.getInt("display");
-                out.println("<tr><th>" + cpu + "</th><th>" + gpu + "</th><th>" + hdd + "</th><th>" + ram
-                        + "</th><th>" + body + "</th><th>" + display + "</th></tr>");
+                String name = rs1.getString("name");
+                String email = rs1.getString("email");
+                String username = rs1.getString("username");
+                out.println("<tr><th>" + name + "</th><th>" + email + "</th><th>" + username + "</th></tr>");
     
             }
             out.println("</table>");

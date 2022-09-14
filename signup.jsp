@@ -71,32 +71,29 @@
         <div class="con text-center">
             <h1>Signup Page<h1>
 <% 
-        session = request.getSession(false);
+        session = request.getSession();
 
         if(session != null){
-            if((Integer)session.getAttribute("signup") == (Integer) 0){
-%>
-<h1>Signup Failed<h1>
-<%  
-        session.invalidate();
-        }
-%>
-<%
-        
-            
-        if( (Integer) session.getAttribute("signup") == (Integer)1){
+   
+            if( (Integer) session.getAttribute("signup") == (Integer)1){
 %>
 <h1>Signup Successfull<h1>
 <h2>You can <a href="http://localhost:8080/project/login.jsp">Login</a> here<h2>
 <%          
             session.removeAttribute("signup");
-            session.invalidate();
             return;
 
                  
         }
-}
+            if((Integer)session.getAttribute("signup") == (Integer) 0){
 %>
+<h1>Signup Failed<h1>
+<%              session.removeAttribute("signup");
+                session.invalidate();
+            }
+        }
+%>
+
 
         <div class="text-center d-flex justify-content-center m-auto mt-5">
             <form name="signup" action="signup" method="post" onsubmit="return validate()">

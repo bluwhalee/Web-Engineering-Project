@@ -41,6 +41,10 @@
     <h2>Parts<h2>
     <jsp:include page="allparts"/>
 </div>
+<div class="p-5 ">
+    <h2>Customers<h2>
+    <jsp:include page="allusers"/>
+</div>
             <div class="d-flex justify-content-evenly mt-5">
                 <div class="text-center">
                     <h2>Change Order Status<h2>

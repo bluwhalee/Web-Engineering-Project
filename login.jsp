@@ -54,12 +54,13 @@
             <h1>Login Page<h1>
 <% 
         session = request.getSession();
-        session.setAttribute("myorders",session.getAttribute("myorders1"));
+        
 %>
 <%
         if((Integer) session.getAttribute("login") == (Integer)1){
             if(session.getAttribute("url") != null){
                 response.sendRedirect((String)(session.getAttribute("url")));
+                return;
 
             }
                 

@@ -10,7 +10,7 @@ public class signup extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException 
     {   
         userDAO ud = userDAO.getUD();
-        int r = ud.userSignup(req.getParameter("id"), req.getParameter("pass"), req.getParameter("name"));
+        int r = ud.userSignup(req.getParameter("id"), req.getParameter("pass"), req.getParameter("name"), req.getParameter("email"));
         if( r == 1)
         {
             HttpSession session = req.getSession();

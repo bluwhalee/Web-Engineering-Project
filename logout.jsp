@@ -14,8 +14,8 @@
 <%      
         session.removeAttribute("myorders");
         session.invalidate();
+        response.sendRedirect("http://localhost:8080/project/index.html");
         
 %>
-<h1>invalid<h1>
 </body> 
 </html>

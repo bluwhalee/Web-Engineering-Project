@@ -39,7 +39,6 @@ public class orderDAO {
             ps.setString(11, status);
             ps.setString(12, username);
             ps.setInt(13, total);
-            ps.executeUpdate();
             rs = ps.executeUpdate();
 
             // if (rs.next( ) ) {

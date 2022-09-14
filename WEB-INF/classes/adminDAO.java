@@ -44,6 +44,20 @@ public class adminDAO {
 
         return rs;
     }
+    public ResultSet allusers() {
+        ResultSet rs = null;
+
+        try {
+            String query1 = "SELECT * FROM profile";
+            PreparedStatement ps = con.prepareStatement(query1);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return rs;
+    }
 
    
 
