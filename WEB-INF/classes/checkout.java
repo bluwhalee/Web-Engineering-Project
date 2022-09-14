@@ -19,22 +19,20 @@ public class checkout extends HttpServlet {
         if (session.getAttribute("myorders") == null) {
             response.sendRedirect("http://localhost:8080/project/cart.jsp");
         }
-        session.setAttribute("myorders1", session.getAttribute("myorders"));
-        if (session.getAttribute("login") == null) {
+        else if (session.getAttribute("login") == null) {
+
+            session.setAttribute("myorders1",session.getAttribute("myorders"));
             session.setAttribute("url", "http://localhost:8080/project/cart.jsp");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
 
-            response.sendRedirect("http://localhost:8080/project/login.jsp");
-
-        } else {
-            session.removeAttribute("url");
-        }
+        } 
 
         List<String[]> orders = new ArrayList<String[]>();
         orders = (List<String[]>) session.getAttribute("myorders");
         if (orders == null) {
             out.println("<h2> Cart is Empty!<h2><a href=" + "http://localhost:8080/project/index.html"
                     + "><button>Buy Now</button></a>");
+            return;
         }
         String id = (String) session.getAttribute("uname");
         int val = 0;
@@ -70,6 +68,7 @@ public class checkout extends HttpServlet {
             val = val + 1;
         }
         out.println("<h2> Order Succsesfull<h2>");
+        out.println(id);
         session.removeAttribute("myorders");
         out.println("<a href=" + "http://localhost:8080/project/index.html" + "><button>Buy More<button></a>");
 

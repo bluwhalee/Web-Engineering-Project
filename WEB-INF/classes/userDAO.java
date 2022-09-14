@@ -85,7 +85,15 @@ public class userDAO {
     public ResultSet searchuser(String username){
 
         try{
-            String query1 = "select * from orders where username=?";
+            String query1 = "";
+            if(username.equals("*"))
+            {
+                query1 = "select * from orders";
+            }
+            else{
+                query1 = "select * from orders where username=?";
+            }
+            
             PreparedStatement ps = con.prepareStatement(query1);
             ps.setString(1,username);
             ResultSet rs = ps.executeQuery();

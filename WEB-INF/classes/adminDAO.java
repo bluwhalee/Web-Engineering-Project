@@ -30,6 +30,20 @@ public class adminDAO {
 
         return rs;
     }
+    public ResultSet allparts() {
+        ResultSet rs = null;
+
+        try {
+            String query1 = "SELECT * FROM parts";
+            PreparedStatement ps = con.prepareStatement(query1);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return rs;
+    }
 
    
 

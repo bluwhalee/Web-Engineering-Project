@@ -104,7 +104,7 @@
                 <input type="checkbox" name="gpu" id="2"> <label for="gpu">GPU</label><br>
                 <input type="checkbox" name="ram" id="3"> <label for="ram">RAM</label><br>
                 <input type="checkbox" name="hdd" id="4"> <label for="hdd">HDD</label><br>
-                <div id="divb"></div>
+                <div id="divb"><p></p></div>
                 <h3>Starting from $50</h3>
                 <input type="submit" value="Add to Cart" class="btn btn-primary">
                 
@@ -122,7 +122,7 @@
                 <input type="checkbox" name="paint"id="6"> <label for="paint">Paint</label><br>
                 <input type="checkbox" name="display" id="7"> <label for="display">Display</label><br>
                 <input type="checkbox" name="wash" id="8"> <label for="wash">Wash</label><br>
-                <div id="divb2"></div>
+                <div id="divb2"><p></p></div>
                 <h2>Starting from $20</h2>
                 <input type="submit" value="Add to Cart" class="btn btn-primary">
             </form>
@@ -134,11 +134,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
     
-        <tr>
-            <th><%= orderno %></th>
-            <th><%= orders.get(val)[0] %></th>
-            <th><%= orders.get(val)[1] %></th>
-        </tr>
+        
 
     </table>
 </body>

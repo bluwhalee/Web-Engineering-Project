@@ -111,6 +111,36 @@
 		<url-pattern>/emptycart</url-pattern>
 
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>allorders</servlet-name>
+		<servlet-class>allorders</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>allorders</servlet-name>
+		<url-pattern>/allorders</url-pattern>
+
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>allparts</servlet-name>
+		<servlet-class>allparts</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>allparts</servlet-name>
+		<url-pattern>/allparts</url-pattern>
+
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>allusers</servlet-name>
+		<servlet-class>allusers</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>allusers</servlet-name>
+		<url-pattern>/allusers</url-pattern>
+
+	</servlet-mapping>
 
 
 

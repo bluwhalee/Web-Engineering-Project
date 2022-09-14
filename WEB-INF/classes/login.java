@@ -12,10 +12,14 @@ public class login extends HttpServlet {
         int r = ud.userLogin(req.getParameter("id"), req.getParameter("pass"));
         if( r == 1)
         {
-            HttpSession session = req.getSession(false);
+            HttpSession session = req.getSession();
             session.setAttribute("login",1);
             session.setAttribute("utype",0);
             session.setAttribute("uname",req.getParameter("id"));
+            if(session.getAttribute("alogin")!=null)
+            {
+                session.removeAttribute("alogin");
+            }
             res.sendRedirect("http://localhost:8080/project/login.jsp");
         }
         if( r == 0)

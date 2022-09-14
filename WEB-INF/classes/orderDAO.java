@@ -193,8 +193,16 @@ public class orderDAO {
     public int deleteorder(String orderid) {
         int rs = 0;
         try {
-            int oid = Integer.parseInt(orderid);
-            String query1 = "DELETE  FROM orders WHERE orderid='" + oid + "'";
+            String query1 = "";
+            if(orderid.equals("*"))
+            {
+                query1 = "delete from orders";
+            }
+            else
+            {
+                int oid = Integer.parseInt(orderid);
+                query1 = "DELETE  FROM orders WHERE orderid='" + oid + "'";
+            }
             Statement s = con.createStatement();
             rs = s.executeUpdate(query1);
 

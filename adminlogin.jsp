@@ -12,7 +12,7 @@
         <div class="con">
 
 <% 
-        session = request.getSession(false);
+        session = request.getSession();
         if(session != null){
             
             if( (Integer) session.getAttribute("alogin") == (Integer)1){

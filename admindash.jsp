@@ -3,24 +3,23 @@
 <%@ page import="java.util.*" %> 
 <%@ page import="java.lang.ProcessBuilder.Redirect" %>
 <%@ page import="javax.swing.*" %>
-<%@ page import="adminDAO" %>
 
 <html>
 <HEAD>
     <TITLE>Admin dash </TITLE>
     <link rel=stylesheet href="adminstyle.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </HEAD>
 <Body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
 <br>
 
 <%    
         session = request.getSession();
-        Integer a = (Integer)session.getAttribute("alogin");
-        
         if((Integer)session.getAttribute("utype")==(Integer)0)
         {
 %>
 <h2>You are accessing with customer account, <a href="http://localhost:8080/project/adminlogin.jsp">login to admin</a> account<h2>
+
 <%
             return;
 
@@ -31,135 +30,56 @@
             rd.forward(request,response);
 
         }
-        
+%>
+<h1 class="text-center mb-3">Admin Dashboard</h1>
+<div class="p-2">
+    <h2> Orders <h2>
+    <jsp:include page="allorders"/>
+</div>
 
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1/rsm";
-            Connection con = DriverManager.getConnection(url, "root", "root");
-            Statement s = con.createStatement();
-            String query = "select * from orders" ;
-            ResultSet rs = s.executeQuery(query); 
-%>
-    <table style="min-width:1240px">
-        <tr>
-            <th>Order Id</th>
-            <th>Package</th>
-            <th>Model</th>
-            <th>Cpu</th>
-            <th>Gpu</th>
-            <th>HDD</th>
-            <th>RAM</th>
-            <th>Body</th>
-            <th>Paint</th>
-            <th>Display</th>
-            <th>Wash</th>
-            <th>Status</th>
-            <th>User</th>
-            <th>Price</th>
-        </tr>
-<%
-    int total=0;
-    while (rs.next()) {
-                String package1 = rs.getString("package");
-                String model = rs.getString("model");
-                String cpu = rs.getString("cpu");
-                String gpu = rs.getString("gpu");
-                String hdd = rs.getString("hdd");
-                String ram = rs.getString("ram");
-                String body = rs.getString("body");
-                String paint = rs.getString("paint");
-                String display = rs.getString("display");
-                String wash = rs.getString("wash");
-                String status = rs.getString("status");
-                String username = rs.getString("username");
-                int ototal = rs.getInt("total");
-                int orderid  = rs.getInt("orderid");
-                total = total + ototal;
-
-%>
-    <tr>
-        <th><%=orderid%></th>
-        <th><%=package1%></th>
-        <th><%=model%></th>
-        <th><%=cpu%></th>
-        <th><%=gpu%></th>
-        <th><%=hdd%></th>
-        <th><%=ram%></th>
-        <th><%=body%></th>
-        <th><%=paint%></th>
-        <th><%=display%></th>
-        <th><%=wash%></th>
-        <th><%=status%></th>
-        <th><%=username%></th>
-        <th><%=ototal%></th>
-    </tr>
-<% } %>
-</table><br><br>
-<h2>Total Revenue :- $<%= total %><h2>
-<h2>Parts<h2><br>
-<table>
-        <tr>
-            <th>Cpu</th>
-            <th>Gpu</th>
-            <th>HDD</th>
-            <th>RAM</th>
-            <th>Body</th>
-            <th>Display</th>
-        </tr>
-<%
-    
-     query = "select * from parts" ;
-     rs = s.executeQuery(query);
-    rs.next();
-    int cpu1 = (rs.getInt("cpu"));
-    int gpu1 = (rs.getInt("gpu"));
-    int hdd1 = (rs.getInt("hdd"));
-    int ram1 = (rs.getInt("ram"));
-    int body1 = (rs.getInt("body"));
-    int display1 = (rs.getInt("display"));
-    rs.previous();
-%>
-    <tr>
-        <th><%=cpu1%></th>
-        <th><%=gpu1%></th>
-        <th><%=hdd1%></th>
-        <th><%=ram1%></th>
-        <th><%=body1%></th>
-        <th><%=display1%></th>
-    </table>
-            <h1>Change Order Status<h1>
-            <form action=changestatus action=post><input type=text name=orderid placeholder="Order id"><input type=text
-                    name=status placeholder="New status"><input type=submit value="Change Status"></form><br>
-             <h1>Complete Order<h1>
-            <form action=completeorder action=post><input type=text name=orderid placeholder="Order id">
-                <input type=submit value="Change Status"></form><br>
-            <h1>Search user<h1>
-            <form action="searchuser.jsp" action=post><input type=text name=userid placeholder="Enter User id"><input
-                    type=submit value="Search"></form><br>
-            <h1>Delete Order<h1>
-                    <form action=deleteorder action=post><input type=text name=orderid placeholder="Enter order
-                            id"><input type=submit value="Delete"></form>
+<div class="p-5 ">
+    <h2>Parts<h2>
+    <jsp:include page="allparts"/>
+</div>
+            <div class="d-flex justify-content-evenly mt-5">
+                <div class="text-center">
+                    <h2>Change Order Status<h2>
+                    <form action=changestatus action=post>
+                        <input type=text name=orderid placeholder="Order id" class="form-control">
+                        <input type=text name=status placeholder="New status " class="form-control">
+                        <input type=submit value="Change Status" class="btn btn-primary mt-3">
+                    </form><br>
+                </div>
+                <div class="text-center">
+                    <h2>Complete Order<h2>
+                    <form action=completeorder action=post>
+                        <input type=text name=orderid placeholder="Order id" class="form-control">
+                        <input type=submit value="Change Status" class="btn btn-primary mt-3">
+                    </form><br>
+                </div>
+            </div>
+            <div class="d-flex justify-content-evenly">
+                <div class="text-center">
+                    <h2>Search user<h2>
+                    <form action="searchuser" method="post">
+                        <input type=text name=userid placeholder="Enter User id" class="form-control">
+                        <input type=submit value="Search" class="btn btn-primary mt-3">
+                    </form><br>
+                    </div>
+                <div class="text-center">
+                    <h2>Delete Order<h2>
+                    <form action=deleteorder action=post>
+                    <input type=text name=orderid placeholder="Enter orderid" class="form-control">
+                    <input type=submit value="Delete" class="btn btn-primary mt-3">
+                    </form>
+                </div>
+            </div>
             
 </body>
-<%
-
-    }
-    catch(Exception e)
-    {
-        out.println(e);
-    }
-    finally {
-        out.println("</body>");
-        out.println("<html>");
-        out.close();
-    }
-
-%>
 
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body> 
 </html>

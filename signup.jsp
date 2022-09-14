@@ -27,42 +27,41 @@
         for(var i = 0; i < elements.length; i++){
             elements[i].innerHTML = null
         }
-        let bol = false;
-        let i = 1;
+        let bol = true;
         
         if ( document.signup.name.value == "" )
             {
-                document.getElementById("div1").innerHTML="<p>Name is Empty</p>"			
-                i = i+1;
+                document.getElementById("div1").innerHTML="<h6 class=text-danger >Name is Empty</h6>"
+                return false;
             }
-        if ( document.signup.id.value == "" )
+        if (document.signup.id.value == "" )
             {
-                document.getElementById("div2").innerHTML="<p>Username is Empty</p>"			
-                i = i+1;
+                document.getElementById("div2").innerHTML="<h6 class=text-danger >Username is Empty</h6>"
+                return false;
             }
+        // if ("/\s/".test(document.signup.id.value);)
+        //     {
+        //         document.getElementById("div2").innerHTML="<h6 class=text-danger >Username without spaces</h6>"
+        //         return false;
+        //     }
         if(document.signup.pass.value == "")	
         {
-                document.getElementById("div3").innerHTML="<p>password is empty!!</p>"
-                i = i+1;
+                document.getElementById("div3").innerHTML="<h6 class=text-danger >Password is Empty</h6>"
+                return false;
         }	
         if(document.signup.pass.value!=document.signup.pass1.value)
         {
-                document.getElementById("div4").innerHTML="<p>New Password and Confirm new Password doesnt match</p>"
-                i = i+1;
+                document.getElementById("div4").innerHTML="<h6 class=text-danger >Pssword didnt match</h6>"
+                return false;
+                
         }
         if ( document.signup.email.value == "" )		
         {
-            document.getElementById("div14").innerHTML="<p>Please enter email address!</p>"
-                i = i+1;
-        }
-        if(i == 1)
-        {
-            return true;
-        }
-        else
-        {
+            document.getElementById("div14").innerHTML="<h6 class=text-danger >Email is Empty</h6>"
             return false;
+               
         }
+        return bol;
     }
        
 </script>
@@ -78,14 +77,9 @@
             if((Integer)session.getAttribute("signup") == (Integer) 0){
 %>
 <h1>Signup Failed<h1>
-<%      
-    
+<%  
         session.invalidate();
-
         }
-        
-        
-
 %>
 <%
         
@@ -110,9 +104,11 @@
                 <div class="diva" id="div1"></div>
                 <input type="text" name="id" placeholder="Enter Username" class="form-control mt-2">
                 <div class="diva" id="div2"></div>
-                <input type="text" name="pass" placeholder="Enter Password" class="form-control mt-2">
+                <input type="email" name="email" placeholder="Enter Email" class="form-control mt-2">
+                <div class="diva" id="div2"></div>
+                <input type="password" name="pass" placeholder="Enter Password" class="form-control mt-2">
                 <div class="diva" id="div3"></div>
-                <input type="text" name="pass1" placeholder="Confirm Password" class="form-control mt-2">
+                <input type="password" name="pass1" placeholder="Confirm Password" class="form-control mt-2">
                 <div class="diva" id="div4"></div>
                 <input type="submit" value="Signup" class="btn btn-primary mt-3">
             </form>
