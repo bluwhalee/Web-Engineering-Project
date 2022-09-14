@@ -15,6 +15,7 @@ public class adminlogin extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("alogin",1);
             session.setAttribute("utype",1);
+            session.removeAttribute("login");
             res.sendRedirect("http://localhost:8080/project/adminlogin.jsp");
         }
         if( r == 0)

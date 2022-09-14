@@ -141,6 +141,16 @@
 		<url-pattern>/allusers</url-pattern>
 
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>deleteuser</servlet-name>
+		<servlet-class>deleteuser</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteuser</servlet-name>
+		<url-pattern>/deleteuser</url-pattern>
+
+	</servlet-mapping>
 
 
 

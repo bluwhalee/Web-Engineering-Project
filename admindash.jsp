@@ -78,7 +78,18 @@
                     </form>
                 </div>
             </div>
-            
+            <div class="d-flex justify-content-evenly">
+                <div class="text-center">
+                    <h2>Delete user<h2>
+                    <form action="deleteuser" method="post">
+                        <input type=text name=userid placeholder="Enter User id" class="form-control">
+                        <input type=submit value="Delete" class="btn btn-primary mt-3">
+                    </form><br>
+                    </div>
+            </div>
+<div class="text-center m-5">
+        <a href="http://localhost:8080/project/logout.jsp"><button class="btn btn-primary">logout</button></a>
+</div>
 </body>
 
 

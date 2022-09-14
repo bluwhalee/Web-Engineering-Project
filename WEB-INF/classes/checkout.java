@@ -12,13 +12,12 @@ public class checkout extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        out.println("<html>");
+        out.println("<html><head><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT\" crossorigin=\"anonymous\"></head>");
         out.println("<body bgcolor=\"white\">");
-        out.println("<h1>" + "Checkout Page" + "</h1>");
         HttpSession session = request.getSession();
         if (session.getAttribute("myorders") == null) {
             out.println("<h2> Cart is Empty!<h2><a href=" + "http://localhost:8080/project/index.html"
-                    + "><button>Buy Now</button></a>");
+                    + "><button class=\"btn btn-primary\">Buy Now</button></a>");
             return;
         }
         
@@ -48,7 +47,6 @@ public class checkout extends HttpServlet {
                 int suc = 1;
                 suc = oa.addorder(orders.get(val)[0], orders.get(val)[1], orders.get(val)[2], orders.get(val)[3],
                         orders.get(val)[4], orders.get(val)[5], "-", "-", "-", "-", "New", id,Integer.parseInt(orders.get(val)[7]));
-                out.println("suc: " + suc + "<br>");
 
             }
             if (orders.get(val)[0].equals("Cosmic Repair")) {
@@ -58,14 +56,13 @@ public class checkout extends HttpServlet {
                 // out.println("Wash: " + orders.get(val)[5] + "<br>");
                 int suc = 1;
                 suc = oa.addorder(orders.get(val)[0], orders.get(val)[1], "-", "-", "-", "-", orders.get(val)[2],orders.get(val)[3], orders.get(val)[4], orders.get(val)[5], "New", id,Integer.parseInt(orders.get(val)[7]));
-                out.println("suc: " + suc + "<br>");
             }
             val = val + 1;
         }
         out.println("<div style=\"text-align:center\"><img src=\"https://i.postimg.cc/3xQSYrxB/tick.png\" width=300px>");
         out.println("<h2> Order Succsesfull<h2>");
         session.removeAttribute("myorders");
-        out.println("<a href=" + "http://localhost:8080/project/index.html" + "><button>Buy More</button></a></div>");
+        out.println("<a href=" + "http://localhost:8080/project/index.html" + "><button class=\"btn btn-primary mt-3\">Buy More</button></a></div>");
 
     }
 

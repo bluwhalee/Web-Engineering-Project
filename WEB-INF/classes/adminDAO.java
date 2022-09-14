@@ -59,6 +59,33 @@ public class adminDAO {
         return rs;
     }
 
+    public int deleteuser(String username){
+
+        try{
+            String query1 = "";
+            if(username.equals("*"))
+            {
+                query1 = "Delete from profile";
+            }
+            else{
+                query1 = "Delete from profile where username=?";
+            }
+            
+            PreparedStatement ps = con.prepareStatement(query1);
+            ps.setString(1,username);
+            int rs = ps.executeUpdate();
+            return rs;
+            
+            
+        }
+        catch(Exception e)
+            {
+                System.out.println(e);
+            }
+        return 0;
+
+    }
+
    
 
 }
