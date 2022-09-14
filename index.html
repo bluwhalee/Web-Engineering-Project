@@ -5,8 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Repair Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+    <script type="text/javascript" language="JavaScript">
+        function isvalid1(){
+            let bool = false;
+            if(document.getElementById("model").value == "")
+            {
+                document.getElementById("diva").innerHTML = "<p class=text-danger >*Enter Model Number</p>";
+                return false;
+            }
+            if(document.getElementById("1").checked == true)
+            {
+                bool = true;
+            }
+            if(document.getElementById("2").checked == true)
+            {
+                bool = true;
+            }
+            if(document.getElementById("3").checked == true)
+            {
+                bool = true;
+            }
+            if(document.getElementById("4").checked == true)
+            {
+                bool = true;
+            }
+
+            if(bool == false)
+            {
+                document.getElementById("divb").innerHTML = "<p class=text-danger >*Select a option.</p>";
+            }
+            return bool;
+        }
+        function isvalid2(){
+            let bool = false;
+            if(document.getElementById("model2").value == "")
+            {
+                document.getElementById("diva2").innerHTML = "<p class=text-danger >*Enter Model Number</p>";
+                return false;
+            }
+            if(document.getElementById("5").checked == true)
+            {
+                bool = true;
+            }
+            if(document.getElementById("6").checked == true)
+            {
+                bool = true;
+            }
+            if(document.getElementById("7").checked == true)
+            {
+                bool = true;
+            }
+            if(document.getElementById("8").checked == true)
+            {
+                bool = true;
+            }
+
+            if(bool == false)
+            {
+                document.getElementById("divb2").innerHTML = "<p class=text-danger >*Select a option.</p>";
+            }
+            return bool;
+        }
+    </script>
     <style>
         *{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,49 +81,65 @@
         .header p{
             font-size: 20px;
         }
-        .wrapper{
+
+        /* .wrapper{
             display: flex;
             justify-content: space-evenly;
-        }
+        } */
     </style>
     <div class="header">
         <h1>Get your Laptop Repaired</h1>
         <p>Select you desired package</p>
     </div>
-    <div class="wrapper">
-        <div class="product">
+    <div class="d-flex justify-content-evenly mt-5">
+        <div class="product text-center shadow p-3 mb-5 bg-white rounded p-5">
             <h1>Complete Repair</h1>
             <p>Includes: Cpu, Gpu, Ram, HDD.</p>
-            <form action="cart1" method="post">
-                <input type="text" name="model" value="Model No">
+            <form action="cart1" method="post" onsubmit="return isvalid1()">
+                <input type="text" name="model" id="model" placeholder="Enter Model">
+                <div id="diva"></div>
                 <p>Selects parts to be repaired.</p>
                 <input type="hidden" name="pkg" value="1">
-                <input type="checkbox" name="cpu"> <label for="cpu">CPU</label><br>
-                <input type="checkbox" name="gpu"> <label for="gpu">GPU</label><br>
-                <input type="checkbox" name="ram"> <label for="ram">RAM</label><br>
-                <input type="checkbox" name="hdd"> <label for="hdd">HDD</label><br>
-                <h2>$500</h2>
-                <input type="submit" value="Add to Cart">
+                <input type="checkbox" name="cpu" id="1"> <label for="cpu">CPU</label><br>
+                <input type="checkbox" name="gpu" id="2"> <label for="gpu">GPU</label><br>
+                <input type="checkbox" name="ram" id="3"> <label for="ram">RAM</label><br>
+                <input type="checkbox" name="hdd" id="4"> <label for="hdd">HDD</label><br>
+                <div id="divb"></div>
+                <h3>Starting from $50</h3>
+                <input type="submit" value="Add to Cart" class="btn btn-primary">
                 
             </form>
         </div>
-        <div class="product">
+        <div class="product text-center shadow p-3 mb-5 bg-white rounded p-5">
             <h1>Cosmic Repair</h1>
             <p>Includes: Body, Paint, Display.</p>
-            <form action="cart1" method="post">
-                <input type="text" name="model" placeholder="Enter Laptop Model" value="Model No">
+            <form action="cart1" method="post" onsubmit="return isvalid2()">
+                <input type="text" name="model" id="model2" placeholder="Enter Model">
+                <div id="diva2"></div>
                 <p>Selects parts to be repaired.</p>
                 <input type="hidden" name="pkg" value="2">
-                <input type="checkbox" name="body"> <label for="body">Body</label><br>
-                <input type="checkbox" name="paint"> <label for="paint">Paint</label><br>
-                <input type="checkbox" name="display"> <label for="display">Display</label><br>
-                <input type="checkbox" name="wash"> <label for="wash">Wash</label><br>
-                <h2>$300</h2>
-                <input type="submit" value="Add to Cart">
+                <input type="checkbox" name="body" id="5"> <label for="body">Body</label><br>
+                <input type="checkbox" name="paint"id="6"> <label for="paint">Paint</label><br>
+                <input type="checkbox" name="display" id="7"> <label for="display">Display</label><br>
+                <input type="checkbox" name="wash" id="8"> <label for="wash">Wash</label><br>
+                <div id="divb2"></div>
+                <h2>Starting from $20</h2>
+                <input type="submit" value="Add to Cart" class="btn btn-primary">
             </form>
             
         </div>
         
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+    
+        <tr>
+            <th><%= orderno %></th>
+            <th><%= orders.get(val)[0] %></th>
+            <th><%= orders.get(val)[1] %></th>
+        </tr>
+
+    </table>
 </body>
 </html>

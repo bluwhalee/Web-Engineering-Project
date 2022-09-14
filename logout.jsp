@@ -12,7 +12,9 @@
 <br>
 
 <%      
+        session.removeAttribute("myorders");
         session.invalidate();
+        
 %>
 <h1>invalid<h1>
 </body> 

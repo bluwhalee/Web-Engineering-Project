@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %> 
 <%@ page import="java.lang.ProcessBuilder.Redirect" %>
 <%@ page import="javax.swing.*" %>
+<%@ page import="adminDAO" %>
 
 <html>
 <HEAD>
@@ -15,10 +16,6 @@
 <%    
         session = request.getSession();
         Integer a = (Integer)session.getAttribute("alogin");
-        if ( a != (Integer) 1){
-            response.sendRedirect("http://localhost:8080/project/adminlogin.jsp");
-
-        }
         
         if((Integer)session.getAttribute("utype")==(Integer)0)
         {
@@ -26,6 +23,12 @@
 <h2>You are accessing with customer account, <a href="http://localhost:8080/project/adminlogin.jsp">login to admin</a> account<h2>
 <%
             return;
+
+        }
+        if ( session.getAttribute("alogin") == null){
+
+            RequestDispatcher rd = request.getRequestDispatcher("/adminlogin.jsp");
+            rd.forward(request,response);
 
         }
         
@@ -39,7 +42,6 @@
             String query = "select * from orders" ;
             ResultSet rs = s.executeQuery(query); 
 %>
-<%= session %>
     <table style="min-width:1240px">
         <tr>
             <th>Order Id</th>
@@ -55,6 +57,7 @@
             <th>Wash</th>
             <th>Status</th>
             <th>User</th>
+            <th>Price</th>
         </tr>
 <%
     int total=0;
@@ -71,15 +74,9 @@
                 String wash = rs.getString("wash");
                 String status = rs.getString("status");
                 String username = rs.getString("username");
+                int ototal = rs.getInt("total");
                 int orderid  = rs.getInt("orderid");
-                if(package1.equals("Complete Repair"))
-                {
-                    total = total + 500;
-                }
-                if(package1.equals("Cosmic Repair"))
-                {
-                    total = total + 300;
-                }
+                total = total + ototal;
 
 %>
     <tr>
@@ -96,6 +93,7 @@
         <th><%=wash%></th>
         <th><%=status%></th>
         <th><%=username%></th>
+        <th><%=ototal%></th>
     </tr>
 <% } %>
 </table><br><br>

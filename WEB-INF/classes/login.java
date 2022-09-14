@@ -12,7 +12,7 @@ public class login extends HttpServlet {
         int r = ud.userLogin(req.getParameter("id"), req.getParameter("pass"));
         if( r == 1)
         {
-            HttpSession session = req.getSession();
+            HttpSession session = req.getSession(false);
             session.setAttribute("login",1);
             session.setAttribute("utype",0);
             session.setAttribute("uname",req.getParameter("id"));

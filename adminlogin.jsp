@@ -27,8 +27,6 @@
         }
         }
 %>
-
-
             <form action="adminlogin" method="post">
                 <input type="text" name="id" placeholder="Admin ID">
                 <input type="text" name="pass" placeholder="Password">

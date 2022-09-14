@@ -13,8 +13,7 @@ public class deleteorder extends HttpServlet {
         int r = oa.deleteorder(orderid);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<html><body>"+r+"");
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admindash.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admindash.jsp");
         dispatcher.forward(request, response);
 
 

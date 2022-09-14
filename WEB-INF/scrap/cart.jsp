@@ -61,7 +61,7 @@
                 }
                 int val = 0;
 
-                session.setAttribute("cartitems", orders);
+                session.setAttribute("myorders", orders);
                 session.setAttribute("lastorder", model);
 
                 while (orders.size() > val) {

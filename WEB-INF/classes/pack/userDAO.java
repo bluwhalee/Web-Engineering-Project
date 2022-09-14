@@ -82,24 +82,6 @@ public class userDAO {
         return 0;
 
     }
-    public ResultSet searchuser(String username){
-
-        try{
-            String query1 = "select * from orders where username=?";
-            PreparedStatement ps = con.prepareStatement(query1);
-            ps.setString(1,username);
-            ResultSet rs = ps.executeQuery();
-            return rs;
-            
-            
-        }
-        catch(Exception e)
-            {
-                System.out.println(e);
-            }
-        return null;
-
-    }
     
     
 }

@@ -20,11 +20,11 @@ public class orderDAO {
             String paint,
             String display, String wash,
             String status,
-            String username, int total) {
+            String username) {
         int rs = 1;
 
         try {
-            String query1 = "INSERT INTO orders (package, model, cpu, gpu, hdd, ram, body, paint, display, wash, status, username, total)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO orders (package, model, cpu, gpu, hdd, ram, body, paint, display, wash, status, username)VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query1);
             ps.setString(1, package1);
             ps.setString(2, model);
@@ -38,8 +38,6 @@ public class orderDAO {
             ps.setString(10, wash);
             ps.setString(11, status);
             ps.setString(12, username);
-            ps.setInt(13, total);
-            ps.executeUpdate();
             rs = ps.executeUpdate();
 
             // if (rs.next( ) ) {
